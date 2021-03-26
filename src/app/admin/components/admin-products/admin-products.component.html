@@ -1,0 +1,64 @@
+<p>
+  <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+</p>
+
+<p>
+  <input
+    #query
+    (keyup)="filter(query.value)"
+    type="text"
+    class="form-control"
+    placeholder="Search...">
+</p>
+
+<!--&lt;!&ndash; https://github.com/MIt9/angular-4-data-table/blob/master/src/components/table.component.ts &ndash;&gt;
+<data-table
+  [items]="items"
+  [itemCount]="itemCount"
+  (reload)="reloadItems($event)">
+
+  <data-table-column
+    [property]="'title'"
+    [header]="'Title'"
+    [sortable]="true"
+    [resizable]="true">
+  </data-table-column>
+
+  <data-table-column
+    [property]="'price'"
+    [header]="'Price'"
+    [sortable]="true"
+    [resizable]="true">
+    <ng-template #dataTableCell let-item="item">
+      {{item?.payload?.val()?.price | currency:'CAD': true}}
+    </ng-template>
+  </data-table-column>
+
+  <data-table-column
+    [property]="'key'">
+    <ng-template #dataTableCell let-item="item">
+      <a [routerLink]="['/admin/products/', item?.key]">Edit</a>
+    </ng-template>
+  </data-table-column>
+
+</data-table>-->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let p of filteredProducts">
+    <td>{{p?.product?.title}}</td>
+    <td>{{p?.product?.price | currency:'CAD': true}}</td>
+    <td>
+      <a [routerLink]="['/admin/products/', p?.productId]">Edit</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
